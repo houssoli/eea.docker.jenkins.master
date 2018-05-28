@@ -5,6 +5,8 @@ RUN /usr/local/bin/install-plugins.sh  < /usr/share/jenkins/ref/plugins.txt
 ENV HOME $JENKINS_HOME
 
 USER root
+RUN groupadd -g 999 docker \
+ && usermod -aG 999 jenkins
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - \
  && apt-get update \
  && apt-get install -y --no-install-recommends graphviz nodejs \
